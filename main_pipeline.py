@@ -56,7 +56,7 @@ def pipeline(
 if __name__ == '__main__':
     # Compile and run the pipeline
     kfp.compiler.Compiler().compile(pipeline, 'pipeline.yaml')
-    aiplatform.init(project='dev-gm')
+    aiplatform.init(project='devgm')
     pipeline_job = aiplatform.PipelineJob(
         display_name='basic-vertex-ai-pipeline',
         template_path='pipeline.yaml',
