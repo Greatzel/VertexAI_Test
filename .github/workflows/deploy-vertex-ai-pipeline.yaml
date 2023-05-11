@@ -32,15 +32,15 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Grant Artifact Registry permission
-        run: |
-          gcloud artifacts repositories add-iam-policy-binding my-artifact-registry \
-            --location=us-central1 \
-            --project=${{ secrets.GCP_PROJECT_ID }} \
-            --member=serviceAccount:${{ secrets.GCP_SA_EMAIL }} \
-            --role=roles/artifactregistry.writer
-        env:
-          GCP_SA_EMAIL: ${{ secrets.GCP_SA_EMAIL }}
+      # - name: Grant Artifact Registry permission
+      #   run: |
+      #     gcloud artifacts repositories add-iam-policy-binding my-artifact-registry \
+      #       --location=us-central1 \
+      #       --project=${{ secrets.GCP_PROJECT_ID }} \
+      #       --member=serviceAccount:${{ secrets.GCP_SA_EMAIL }} \
+      #       --role=roles/artifactregistry.writer
+      #   env:
+      #     GCP_SA_EMAIL: ${{ secrets.GCP_SA_EMAIL }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
