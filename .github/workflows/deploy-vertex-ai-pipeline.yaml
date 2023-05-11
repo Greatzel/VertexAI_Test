@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Print secrets
+      run: |
+        echo GCP_PROJECT_ID=$GCP_PROJECT_ID
+        echo GCP_SA_KEY=$GCP_SA_KEY
+            
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -23,11 +28,6 @@ jobs:
     - name: Compile pipeline
       run: |
         python pipeline.py
-    
-    - name: Print secrets
-      run: |
-        echo GCP_PROJECT_ID=$GCP_PROJECT_ID
-        echo GCP_SA_KEY=$GCP_SA_KEY
 
     - name: Authenticate with GCP
       uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
