@@ -36,8 +36,8 @@ jobs:
         context: .
         push: true
         tags: |
-          gcr.io/$PROJECT_ID/my-image:${IMAGE_TAG}
-          gcr.io/$PROJECT_ID/my-image:latest
+          gcr.io/devgm/my-image
+          gcr.io/devgm/my-image:latest
       env:
         DOCKER_BUILDKIT: 1
 
