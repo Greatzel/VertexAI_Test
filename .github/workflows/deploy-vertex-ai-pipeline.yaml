@@ -9,7 +9,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      PROJECT_ID: devgm
+      PROJECT_ID: vertex-demo-1-385406
       IMAGE_TAG: ${{ github.sha }}
     steps:
       - name: Checkout repository
