@@ -46,9 +46,9 @@ jobs:
         aiplatform pipeline create \
           --display-name=my-pipeline \
           --description="My Vertex AI pipeline" \
-          --docker-image-uri=gcr.io/$PROJECT_ID/my-image:${IMAGE_TAG} \
+          --docker-image-uri=gcr.io/devgm/my-image \
           --machine-type=n1-standard-4 \
-          --service-account=$GOOGLE_CLOUD_PROJECT@appspot.gserviceaccount.com \
+          --service-account=vai-dev@vertex-demo-1-385406.iam.gserviceaccount.com \
           --input-paths=training_data_uri:string,serving_container_image_uri:string \
           --output-paths=model:artifact,endpoint:artifact
       env:
