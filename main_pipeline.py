@@ -9,26 +9,14 @@ def public_bucket_pipeline(project_id: str):
     training_data_uri = 'gs://public_bucket/training_data.csv'
     validation_data_uri = 'gs://public_bucket/validation_data.csv'
 
-    # Create the Vertex AI custom job spec
-    job_spec = {
-        'worker_pool_specs': [
-            {
-                'machine_spec': {
-                    'machine_type': 'n1-standard-8'
-                },
-                'replica_count': 1,
-                'container_spec': {
-                    'image_uri': 'gcr.io/my-project/my-image',
-                    'command': ['python', 'train.py', '--training_data_uri', training_data_uri, '--validation_data_uri', validation_data_uri]
-                }
-            }
-        ]
-    }
+    # Define the container command to run
+    container_command = f'python train.py --training_data_uri {training_data_uri} --validation_data_uri {validation_data_uri}'
 
     # Submit the custom job to Vertex AI
     aiplatform.CustomJob(
         display_name='public-bucket-training-job',
-        job_spec=job_spec,
+        container_uri='gcr.io/my-project/my-image',
+        command=container_command,
         project=project_id
     ).run(sync=True)
 
