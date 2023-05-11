@@ -6,8 +6,8 @@ from google.cloud import aiplatform
 def public_bucket_pipeline(project_id: str):
   
     # Define the training and validation dataset URIs
-    training_data_uri = 'gs://public_bucket/training_data.csv'
-    validation_data_uri = 'gs://public_bucket/validation_data.csv'
+    training_data_uri = 'gs://devgm-testbucket/training_data.csv'
+    validation_data_uri = 'gs://devgm-testbucket/validation_data.csv'
 
     # Define the container spec
     container_spec = aiplatform.gas.ContainerSpec(
