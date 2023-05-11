@@ -12,11 +12,16 @@ def public_bucket_pipeline(project_id: str):
     # Define the container command to run
     container_command = f'python train.py --training_data_uri {training_data_uri} --validation_data_uri {validation_data_uri}'
 
+    # Create the container spec
+    container_spec = {
+        'image_uri': 'gcr.io/devgm/my-image',
+        'command': ['bash', '-c', container_command]
+    }
+
     # Submit the custom job to Vertex AI
     aiplatform.CustomJob(
         display_name='public-bucket-training-job',
-        container_uri='gcr.io/my-project/my-image',
-        command=container_command,
+        container_spec=container_spec,
         project=project_id
     ).run(sync=True)
 
