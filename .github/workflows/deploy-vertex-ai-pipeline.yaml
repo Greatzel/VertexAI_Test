@@ -30,6 +30,7 @@ jobs:
           gcloud auth configure-docker
           gcloud artifacts repositories add-iam-policy-binding my-artifact-registry \
             --location=us-central1 \
+            --project=${{ secrets.GCP_PROJECT_ID }} \
             --member=serviceAccount:${{ secrets.GCP_SA_EMAIL }} \
             --role=roles/artifactregistry.writer
         env:
